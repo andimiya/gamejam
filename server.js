@@ -19,19 +19,13 @@ app.engine('.hbs', exphbs({
 app.use('/', home);
 
 
+io.on('connection', (socket) => {
+  socket.on('chat message', (msg) =>{
+    io.emit('chat message', msg);
+  });
+});
 
 
-// app.get('/', function(req, res){
-//   res.sendFile(__dirname + '/index.html');
-// });
-
-// io.on('connection', (socket) => {
-//   socket.on('chat message', (msg) =>{
-//     io.emit('chat message', msg);
-//   });
-// });
-
-
-app.listen(3000, function(){
+http.listen(3000, function(){
   console.log('listening on *:3000');
 });

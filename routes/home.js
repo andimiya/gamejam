@@ -13,8 +13,6 @@ router.route('/get-code')
     let code = 123;
     console.log(code);
 
-    res.render('templates/get-code', {"code": code});
-  });
 
 router.route('/play')
   .get((req, res) => {
