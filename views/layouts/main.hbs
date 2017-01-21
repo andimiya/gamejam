@@ -22,7 +22,7 @@
   <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
   <script>
     var socket = io();
-    $('form').submit(function(){
+    $('form#chatForm').submit(function(){
       console.log('hello');
       socket.emit('chat message', $('#m').val());
       $('#m').val('');

@@ -19,9 +19,14 @@ router.route('/get-code')
     res.render('templates/get-code', {"code": generatedCode});
 });
 
-router.route('/')
+router.route('/play')
   .post((req, res) => {
     res.redirect('/templates/play');
+
+  // if (generatedCode === req.code;
+  console.log('req body', req.body);
+  // console.log(generatedCode);
+  res.redirect('/play');
 });
 
 router.route('/play')
