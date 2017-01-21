@@ -1,7 +1,14 @@
 <h1>Welcome</h1>
 
-<input type=button onClick="location.href='/get-code'" value='Play'>
+<input type=button onClick="location.href='/get-code'" value='Create Game'>
 </div>
 
+
+<form action="/play" method="post">
+  Join Game:<br>
+  <input type="text" name="code">
+  <br>
+  <input type="submit" value="Join Game">
+</form>
 
 
