@@ -10,25 +10,20 @@ router.use(methodOverride('_method'));
 router.route('/')
   .get((req, res) => {
     res.render('templates/home');
-  });
+});
 
 router.route('/get-code')
   .get((req, res) => {
     generatedCode = 123;
     console.log(generatedCode);
     res.render('templates/get-code', {"code": generatedCode});
-  });
-
-router.route('/enter-code')
-  .get((req, res) => {
-    res.render('templates/enter-code');
-  });
+});
 
 router.route('/')
   .post((req, res) => {
   // if (generatedCode === req.code;
-  console.log(req.body);
-  console.log(generatedCode);
+  console.log('req body', req.body);
+  // console.log(generatedCode);
   res.redirect('/templates/play');
 });
 
