@@ -24,8 +24,9 @@ router.route('/enter-code')
 router.route('/')
   .post((req, res) => {
     // generatedCode === req.code;
+  console.log(req.body);
   console.log(generatedCode);
-  res.redirect('templates/play');
+  res.redirect('/templates/play');
 });
 
 router.route('/play')
