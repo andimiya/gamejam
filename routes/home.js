@@ -21,10 +21,16 @@ router.route('/get-code')
 
 router.route('/play')
   .post((req, res) => {
-  // if (generatedCode === req.code;
-  console.log('req body', req.body);
-  // console.log(generatedCode);
-  res.redirect('/play');
+  if (parseInt(generatedCode) === parseInt(req.code)) {
+
+    res.redirect('/play');
+  }
+  else {
+    console.log('error, codes dont match');
+    console.log('generated code', typeof generatedCode);
+    console.log('req code', typeof req.code);
+  }
+
 });
 
 router.route('/play')
