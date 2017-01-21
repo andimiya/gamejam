@@ -1,11 +1,9 @@
 const express = require('express');
 const home = require('../routes/home');
 const router = express.Router();
-const methodOverride = require('method-override');
 
 let generatedCode = null;
 
-router.use(methodOverride('_method'));
 
 router.route('/')
   .get((req, res) => {
