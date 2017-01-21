@@ -2,6 +2,7 @@ const express = require('express');
 const home = require('../routes/home');
 const router = express.Router();
 
+let generatedCode = null;
 
 router.route('/')
   .get((req, res) => {
@@ -10,10 +11,22 @@ router.route('/')
 
 router.route('/get-code')
   .get((req, res) => {
-    let code = 123;
-    console.log(code);
-  res.render('templates/get-code', {"code": code});
+    generatedCode = 123;
+    console.log(generatedCode);
+    res.render('templates/get-code', {"code": generatedCode});
   });
+
+router.route('/enter-code')
+  .get((req, res) => {
+    res.render('templates/enter-code');
+  });
+
+router.route('/')
+  .post((req, res) => {
+    // generatedCode === req.code;
+  console.log(generatedCode);
+  res.redirect('templates/play');
+});
 
 router.route('/play')
   .get((req, res) => {
