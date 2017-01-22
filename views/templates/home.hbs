@@ -1,5 +1,28 @@
 <style>
-
+@-webkit-keyframes wiggle
+{
+    0% {-webkit-transform: rotateZ(2deg);}
+    50% {-webkit-transform: rotateZ(-2deg);}
+    100% {-webkit-transform: rotateZ(2deg);}
+}
+@-moz-keyframes wiggle
+{
+    0% {-moz-transform: rotateZ(2deg);}
+    50% {-moz-transform: rotateZ(-2deg);}
+    100% {-moz-transform: rotateZ(2deg);}
+}
+@-o-keyframes wiggle
+{
+    0% {-o-transform: rotateZ(2deg);}
+    50% {-o-transform: rotateZ(-2deg);}
+    100% {-o-transform: rotateZ(2deg);}
+}
+@keyframes wiggle
+{
+    0% {transform: rotateZ(2deg);}
+    50% {transform: rotateZ(-2deg);}
+    100% {transform: rotateZ(2deg);}
+}
 
 body {
   background-color: #CA661A
@@ -20,32 +43,90 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 15%;
-  padding: 100px 0px 0px 0px;
+  width: 20%;
+  padding: 150px 0px 0px 0px;
+  -webkit-animation: wiggle 0.5s ease infinite;
+  -moz-animation: wiggle 0.5s ease infinite;
+  -o-animation: wiggle 0.5s ease infinite;
+  animation: wiggle 0.5s ease infinite;
 }
 
-#left-body {
+#panda-body {
   display: block;
   position: absolute;
-  left: -20px;
+  left: -50px;
   width: 40%;
   top: 230px;
 }
 
-#right-body {
+#bunny-body {
   display: block;
   position: absolute;
-  right: -20px;
+  right: -40px;
   width: 40%;
   top: 230px;
 }
+
+#panda-left {
+  display: block;
+  position: absolute;
+  left: -30px;
+  width: 20%;
+  bottom: 50px;
+  -webkit-animation: wiggle 0.2s ease infinite;
+  -moz-animation: wiggle 0.2s ease infinite;
+  -o-animation: wiggle 0.2s ease infinite;
+  animation: wiggle 0.2s ease infinite;
+}
+
+#panda-right {
+  display: block;
+  position: absolute;
+  left: -30px;
+  width: 30%;
+  bottom: -160px;
+  -webkit-animation: wiggle 0.2s ease infinite;
+  -moz-animation: wiggle 0.2s ease infinite;
+  -o-animation: wiggle 0.2s ease infinite;
+  animation: wiggle 0.2s ease infinite;
+}
+
+#bunny-left {
+  display: block;
+  position: absolute;
+  right: -30px;
+  width: 25%;
+  bottom: -150px;
+  -webkit-animation: wiggle 0.2s ease infinite;
+  -moz-animation: wiggle 0.2s ease infinite;
+  -o-animation: wiggle 0.2s ease infinite;
+  animation: wiggle 0.2s ease infinite;
+}
+
+#bunny-right {
+  display: block;
+  position: absolute;
+  right: -30px;
+  width: 20%;
+  bottom: 60px;
+  -webkit-animation: wiggle 0.2s ease infinite;
+  -moz-animation: wiggle 0.2s ease infinite;
+  -o-animation: wiggle 0.2s ease infinite;
+  animation: wiggle 0.2s ease infinite;
+  }
+}
+
 
 </style>
 
 <div id="home-container">
 <img id="title" src="assets/title.png">
-<img id="left-body" src="assets/panda-body.png">
-<img id="right-body" src="assets/bunny-body.png">
+<img id="panda-body" src="assets/panda-body.png">
+<img id="bunny-body" src="assets/bunny-body.png">
+<img id="panda-right" src="assets/panda-right.png">
+<img id="panda-left" src="assets/panda-left.png">
+<img id="bunny-right" src="assets/bunny-right.png">
+<img id="bunny-left" src="assets/bunny-left.png">
 <img id="start-button" src="assets/start.png" onClick="location.href='/get-code'" value='Create Game'>
 
 </div>
