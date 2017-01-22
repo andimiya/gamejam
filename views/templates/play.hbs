@@ -44,7 +44,9 @@
 
   <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
   <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
   <script>
+
     var socket = io('http://localhost:3000');
       socket.on('chat', function (data) {
         $('#messages').append(data.message);
@@ -67,18 +69,14 @@
     }
 
     function nextMove(cell) {
-      // console.log (cell.innerHTML);
-      // if (cell.innerHTML === "") {
+      console.log('cell: ', cell);
+
         switchTurn();
-      //   console.log(document.turn);
-      // }
-      // else {
-      //   setMessage("That square is already used");
-      // }
     }
 
     function switchTurn() {
       if (checkForWinner(document.turn)) {
+        console.log('checkForWinner', checkForWinner(document.turn));
         setMessage("Congratulations " + document.turn + " You Win!");
       }
       else if (document.turn === "X"){
@@ -90,6 +88,7 @@
         setMessage("Its " + document.turn + "s Turn")
       }
     }
+
 
     function checkForWinner(move) {
       var result = false;
@@ -110,6 +109,10 @@
     }
 
     function checkRow(a, b, c, move) {
+      console.log('a: ', a);
+      console.log('b: ', b);
+      console.log('c: ', c);
+      console.log('move: ', move);
       var result = false;
       if (
         getBox(a) === move &&
@@ -120,75 +123,83 @@
       return result;
     }
 
-    function getBox(number){
-      console.log(event.currentTarget.innerHTML);
-      return event.currentTarget.innerHTML;
+    function getBox(id){
+      return event.currentTarget;
     }
 
-    let storeState = [0,0,0,0,0,0,0,0,0];
 
     document.getElementById('cell-0').addEventListener('click', (event) => {
       console.log({cell: 0});
-      storeState.splice(0, 0, 1);
       event.currentTarget.innerHTML = document.turn;
-      console.log(storeState);
       socket.emit('clicked', {cell: 0});
       nextMove(event.currentTarget);
     });
 
-
     document.getElementById('cell-1').addEventListener('click', (event) => {
       console.log({cell: 1});
-      storeState.splice(0, 0, 1);
       event.currentTarget.innerHTML = document.turn;
-      console.log(storeState);
       socket.emit('clicked', {cell: 1});
       nextMove(event.currentTarget);
     });
 
     document.getElementById('cell-2').addEventListener('click', (event) => {
       console.log({cell: 2});
-      // nextMove(1);
-      storeState.splice(0, 0, 1);
       event.currentTarget.innerHTML = document.turn;
-      console.log(storeState);
       socket.emit('clicked', {cell: 2});
       nextMove(event.currentTarget);
     });
 
     document.getElementById('cell-3').addEventListener('click', (event) => {
       console.log({cell: 3});
-      // nextMove(1);
-      storeState.splice(0, 0, 1);
-      console.log(storeState);
-      socket.emit('clicked', {cell: 3});
+      event.currentTarget.innerHTML = document.turn;
+       socket.emit('clicked', {cell: 3});
+      nextMove(event.currentTarget);
     });
+
     document.getElementById('cell-4').addEventListener('click', (event) => {
       console.log({cell: 4});
+      event.currentTarget.innerHTML = document.turn;
       socket.emit('clicked', {cell: 4});
+      nextMove(event.currentTarget);
     });
+
     document.getElementById('cell-5').addEventListener('click', (event) => {
       console.log({cell: 5});
+      event.currentTarget.innerHTML = document.turn;
       socket.emit('clicked', {cell: 5});
+      nextMove(event.currentTarget);
     });
+
     document.getElementById('cell-6').addEventListener('click', (event) => {
       console.log({cell: 6});
+      event.currentTarget.innerHTML = document.turn;
       socket.emit('clicked', {cell: 6});
+      nextMove(event.currentTarget);
     });
+
     document.getElementById('cell-7').addEventListener('click', (event) => {
       console.log({cell: 7});
+      event.currentTarget.innerHTML = document.turn;
       socket.emit('clicked', {cell: 7});
+      nextMove(event.currentTarget);
     });
+
     document.getElementById('cell-8').addEventListener('click', (event) => {
       console.log({cell: 8});
+      event.currentTarget.innerHTML = document.turn;
       socket.emit('clicked', {cell: 8});
+      nextMove(event.currentTarget);
     });
 
 </script>
 
-{{!-- <div id="grid"></div>
+
+
+
+
+<div id="grid"></div>
 
 <ul id="messages"></ul>
     <form action="" id="chatForm">
       <input id="m" autocomplete="off" /><button>Send</button>
-    </form> --}}
+    </form>
