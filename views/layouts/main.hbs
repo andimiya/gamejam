@@ -5,6 +5,28 @@
   <title>Home</title>
   <link href="/css/app.css" rel="stylesheet" type="text/css">
   <style>
+
+    #container {
+      border: 1px solid black;
+      display: block;
+      /*flex-flow: row-wrap;*/
+
+    }
+    .row {
+      border: 1px solid black;
+      float: left;
+      width: 600px;
+
+    }
+    .cell {
+      border: 1px solid black;
+      width: 200px;
+      height: 200px;
+      float: left;
+    }
+
+
+
    /* * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font: 13px Helvetica, Arial; }
     form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
@@ -15,9 +37,27 @@
     #messages li:nth-child(odd) { background: #eee; }*/
   </style>
 </head>
-<body>
+<body onload="startGame();">
 
-  {{{body}}}
+  <div id="message">Messages will go here</div>
+
+
+
+  <div id="container"></div>
+  <div class="row" id="row-1"></div>
+    <div class="cell" id="cell-0"></div>
+    <div class="cell" id="cell-1"></div>
+    <div class="cell" id="cell-2"></div>
+  <div class="row" id="row-2"></div>
+    <div class="cell" id="cell-3"></div>
+    <div class="cell" id="cell-4"></div>
+    <div class="cell" id="cell-5"></div>
+  <div class="row" id="row-3"></div>
+    <div class="cell" id="cell-6"></div>
+    <div class="cell" id="cell-7"></div>
+    <div class="cell" id="cell-8"></div>
+
+
 
   <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
   <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
@@ -34,33 +74,131 @@
         socket.emit('chat', { message: $('#m').val()})
       });
 
-      let sampleMatrix = [
-        [0,1,0],
-        [0,1,0],
-        [0,1,0]
-      ]
+    function startGame(){
+      document.turn = "X";
+      setMessage(document.turn + ' gets to start');
+    }
 
-      function setGrid(n,m) {
-        var grid = document.getElementById('grid');
-        grid.setAttribute('style', `width: ${n*3}px; height: ${m*3}px;`);
+    function setMessage(msg){
+      document.getElementById("message").innerHTML = msg;
+    }
 
-        for (var i = 0; i < n; i++) {
-          for (var x = 0; x < m; x++) {
-            var div = document.createElement('div');
-            div.classList.add('cells');
-            div.dataset.x = x;
-            div.dataset.y = i;
-            div.style.backgroundColor = '';
-            div.addEventListener('click', (event) =>{
-              console.log(event.target.dataset);
-              socket.emit('clicked', event.target.dataset);
-            })
-            grid.appendChild(div);
-          }
-        }
+    function nextMove(cell) {
+      if (cell.innerHTML === "") {
+      cell.innerHTML = document.turn;
+      switchTurn();
+      console.log(document.turn);
       }
+      else {
+        setMessage("That square is already used");
+      }
+    }
 
-      setGrid(3,3);
+    function switchTurn() {
+      if (checkForWinner(document.turn)) {
+        setMessage("Congratulations " + document.turn + " You Win!");
+      }
+      else if (document.turn === "X"){
+        document.turn = "0"
+        setMessage("It's " + document.turn + "'s Turn")
+      }
+      else {
+        document.turn = "X";
+        setMessage("It's " + document.turn + "'s Turn")
+      }
+    }
+
+    function checkForWinner(move) {
+      var result = false;
+
+      if (
+        checkRow(1, 2, 3, move ) ||
+        checkRow(4, 5, 6, move ) ||
+        checkRow(7, 8, 9, move ) ||
+        checkRow(1, 4, 7, move ) ||
+        checkRow(2, 5, 8, move ) ||
+        checkRow(3, 6, 9, move ) ||
+        checkRow(1, 5, 9, move ) ||
+        checkRow(3, 5, 7, move ) ||
+        ) {
+        result = true;
+        }
+      return result;
+    }
+
+    function checkRow(a, b, c, move) {
+      var result = false;
+
+      if (
+        getBox(a) === move &&
+        getBox(b) === move &&
+        getBox(c) === move ) {
+      result = true;
+      }
+      return result;
+    }
+
+    function getBox(number){
+      return document.getElementById("cell-0" + number).innerHTML;
+    }
+
+
+    let storeState = [0,0,0,0,0,0,0,0,0];
+
+    document.getElementById('cell-0').addEventListener('click', (event) => {
+      console.log({cell: 0});
+      // nextMove(1);
+      element.innerHTML = document.turn;
+      storeState.splice(0, 0, 1);
+      console.log(storeState);
+      socket.emit('clicked', {cell: 0});
+    });
+
+
+    document.getElementById('cell-1').addEventListener('click', (event) => {
+      console.log({cell: 1});
+      // nextMove(1);
+      // innerHTML = "X";
+      storeState.splice(0, 0, 1);
+      console.log(storeState);
+      socket.emit('clicked', {cell: 1});
+    });
+    document.getElementById('cell-2').addEventListener('click', (event) => {
+      console.log({cell: 2});
+      nextMove(1);
+      storeState.splice(0, 0, 1);
+      console.log(storeState);
+      socket.emit('clicked', {cell: 2});
+    });
+    document.getElementById('cell-3').addEventListener('click', (event) => {
+      console.log({cell: 3});
+      nextMove(1);
+      storeState.splice(0, 0, 1);
+      console.log(storeState);
+      socket.emit('clicked', {cell: 3});
+    });
+    document.getElementById('cell-4').addEventListener('click', (event) => {
+      console.log({cell: 4});
+      socket.emit('clicked', {cell: 4});
+    });
+    document.getElementById('cell-5').addEventListener('click', (event) => {
+      console.log({cell: 5});
+      socket.emit('clicked', {cell: 5});
+    });
+    document.getElementById('cell-6').addEventListener('click', (event) => {
+      console.log({cell: 6});
+      socket.emit('clicked', {cell: 6});
+    });
+    document.getElementById('cell-7').addEventListener('click', (event) => {
+      console.log({cell: 7});
+      socket.emit('clicked', {cell: 7});
+    });
+    document.getElementById('cell-8').addEventListener('click', (event) => {
+      console.log({cell: 8});
+      socket.emit('clicked', {cell: 8});
+    });
+
   </script>
+{{{body}}}
 </body>
 </html>
