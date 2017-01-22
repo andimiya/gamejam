@@ -2,22 +2,26 @@
 <head>
 <style>
   body {
-
+    font-family: 'Nunito', sans-serif;
+    font-size: 32px;
+    text-align: center;
   }
   #page-container {
     border: 10px solid blue;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    height: 500px;
+    height: 700px;
   }
   #left-sidebar-container {
     border: 10px solid red;
+    background-color: #CC6600;
     box-sizing: border-box;
     flex: 0 0 25%;
   }
   #container {
     border: 10px solid pink;
+    background-color: #E67605;
     box-sizing: border-box;
     flex: 0 0 75%;
 
@@ -26,6 +30,9 @@
 
   }
   .gameboard {
+    background-image: url('/assets/grid.png');
+    background-repeat: no-repeat;
+    background-position: center;
     border: 10px solid purple;
     display: flex;
     flex-flow: row wrap;
@@ -35,7 +42,7 @@
     border: 10px solid brown;
     box-sizing: border-box;
     flex: 0 0 33.3333%;
-    height: 100px;
+    height: 200px;
   }
 
 </style>
@@ -85,7 +92,7 @@
       });
 
     function startGame(){
-      document.turn = "X";
+      document.turn = "Player 1";
       setMessage(document.turn + " gets to start");
     }
 
@@ -104,12 +111,12 @@
         console.log('checkForWinner', checkForWinner(document.turn));
         setMessage("Congratulations " + document.turn + " You Win!");
       }
-      else if (document.turn === "X"){
-        document.turn = "0"
+      else if (document.turn === "Player 1"){
+        document.turn = "Player 2"
         setMessage("Its " + document.turn + "s Turn")
       }
       else {
-        document.turn = "X";
+        document.turn = "Player 1";
         setMessage("Its " + document.turn + "s Turn")
       }
     }
@@ -134,10 +141,10 @@
     }
 
     function checkRow(a, b, c, move) {
-      console.log('a: ', a);
-      console.log('b: ', b);
-      console.log('c: ', c);
-      console.log('move: ', move);
+      // console.log('a: ', a);
+      // console.log('b: ', b);
+      // console.log('c: ', c);
+      // console.log('move: ', move);
       var result = false;
       if (
         getBox(a) === move &&
@@ -149,69 +156,80 @@
     }
 
     function getBox(id){
+      console.log(id, 'id');
       return document.getElementById(`cell-${id}`).innerHTML;
     }
 
+    function showImage() {
+      if (document.turn === "Player 1") {
+        return '<img height=100px src="/assets/small-player1.png"/>'
+      }
+      else {
+        return '<img height=100px src="/assets/small-player2.png"/>'
+      }
+    }
 
     document.getElementById('cell-1').addEventListener('click', (event) => {
       console.log({cell: 0});
-      event.currentTarget.innerHTML = document.turn;
+      console.log(document.turn, 'documentturn');
+      console.log(event.currentTarget, 'current target');
+      event.currentTarget.innerHTML = showImage();
       socket.emit('clicked', {cell: 0});
       nextMove(event.currentTarget);
     });
 
     document.getElementById('cell-2').addEventListener('click', (event) => {
       console.log({cell: 1});
-      event.currentTarget.innerHTML = document.turn;
+      event.currentTarget.innerHTML = showImage();
       socket.emit('clicked', {cell: 1});
       nextMove(event.currentTarget);
     });
 
     document.getElementById('cell-3').addEventListener('click', (event) => {
       console.log({cell: 2});
-      event.currentTarget.innerHTML = document.turn;
+      event.currentTarget.innerHTML = showImage();
       socket.emit('clicked', {cell: 2});
       nextMove(event.currentTarget);
     });
 
     document.getElementById('cell-4').addEventListener('click', (event) => {
       console.log({cell: 3});
-      event.currentTarget.innerHTML = document.turn;
+      event.currentTarget.innerHTML = showImage();
        socket.emit('clicked', {cell: 3});
       nextMove(event.currentTarget);
     });
 
     document.getElementById('cell-5').addEventListener('click', (event) => {
       console.log({cell: 4});
-      event.currentTarget.innerHTML = document.turn;
+      event.currentTarget.innerHTML = showImage();
       socket.emit('clicked', {cell: 4});
       nextMove(event.currentTarget);
     });
 
     document.getElementById('cell-6').addEventListener('click', (event) => {
       console.log({cell: 5});
-      event.currentTarget.innerHTML = document.turn;
+      event.currentTarget.innerHTML = showImage();
       socket.emit('clicked', {cell: 5});
       nextMove(event.currentTarget);
     });
 
     document.getElementById('cell-7').addEventListener('click', (event) => {
       console.log({cell: 6});
-      event.currentTarget.innerHTML = document.turn;
+      event.currentTarget.innerHTML = showImage();
       socket.emit('clicked', {cell: 6});
       nextMove(event.currentTarget);
     });
 
     document.getElementById('cell-8').addEventListener('click', (event) => {
       console.log({cell: 7});
-      event.currentTarget.innerHTML = document.turn;
+      event.currentTarget.innerHTML = showImage();
       socket.emit('clicked', {cell: 7});
       nextMove(event.currentTarget);
     });
 
     document.getElementById('cell-9').addEventListener('click', (event) => {
       console.log({cell: 8});
-      event.currentTarget.innerHTML = document.turn;
+      event.currentTarget.innerHTML = showImage();
       socket.emit('clicked', {cell: 8});
       nextMove(event.currentTarget);
     });
