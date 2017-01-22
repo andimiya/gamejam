@@ -43,7 +43,8 @@
             div.dataset.y = i;
             div.style.backgroundColor = '';
             div.addEventListener('click', (event) =>{
-              socket.emit('clicked', {data: $('event').target.dataset});
+              console.log(event.target.dataset);
+              socket.emit('clicked', event.target.dataset);
             })
             grid.appendChild(div);
           }

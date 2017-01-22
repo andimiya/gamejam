@@ -21,12 +21,14 @@ app.use('/', home);
 
 io.on('connection', function (socket) {
    socket.on('chat', function (data) {
+    console.log('dataChat: ', data);
     socket.broadcast.emit('chat', data);
   });
    socket.on('clicked', function (data) {
+    console.log('dataClicked: ', data);
     socket.broadcast.emit('clicked', data);
-
    });
+
 });
 
 
