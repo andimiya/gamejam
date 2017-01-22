@@ -6,7 +6,8 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const home = require('./routes/home');
 
-app.use(bodyParser.urlencoded({extended:true}))
+
+app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static('public'));
 
 app.set('view engine', '.hbs');
