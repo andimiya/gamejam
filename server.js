@@ -20,7 +20,6 @@ app.use('/', home);
 
 
 io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
   socket.on('news', function (data) {
     console.log('server', data);
   });
