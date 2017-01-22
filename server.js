@@ -19,9 +19,13 @@ app.engine('.hbs', exphbs({
 app.use('/', home);
 
 
-io.on('connection', (socket) => {
-  socket.on('chat message', (msg) =>{
-    io.emit('chat message', msg);
+io.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+  socket.on('news', function (data) {
+    console.log('server', data);
+  });
+   socket.on('chat', function (data) {
+    socket.broadcast.emit('chat', data);
   });
 });
 
