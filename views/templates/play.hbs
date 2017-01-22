@@ -1,46 +1,71 @@
 <h1>Play</h1>
 <head>
 <style>
+  body {
 
-    #container {
-      border: 1px solid black;
-      display: block;
-    }
-    .row {
-      border: 1px solid black;
-      float: left;
-      width: 600px;
-    }
-    .cell {
-      border: 1px solid black;
-      width: 200px;
-      height: 200px;
-      float: left;
-    }
+  }
+  #page-container {
+    border: 10px solid blue;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    height: 500px;
+  }
+  #left-sidebar-container {
+    border: 10px solid red;
+    box-sizing: border-box;
+    flex: 0 0 25%;
+  }
+  #container {
+    border: 10px solid pink;
+    box-sizing: border-box;
+    flex: 0 0 75%;
+
+  }
+  #message {
+
+  }
+  .gameboard {
+    border: 10px solid purple;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+  }
+  .cell {
+    border: 10px solid brown;
+    box-sizing: border-box;
+    flex: 0 0 33.3333%;
+    height: 100px;
+  }
+
 </style>
 </head>
 
-<div id="page-container"></div>
-<div id="left-sidebar-container"></div>
-
-
 <body onload="startGame();">
+  <div id="page-container">
+    <div id="left-sidebar-container">
+      <div id="grid"></div>
+      <ul id="messages"></ul>
+      <form action="" id="chatForm">
+        <input id="m" autocomplete="off" /><button>Send</button>
+      </form>
+    </div>
 
-  <div id="message">Messages will go here</div>
-
-  <div id="container"></div>
-  <div class="row" id="row-1"></div>
-    <div class="cell" id="cell-1"></div>
-    <div class="cell" id="cell-2"></div>
-    <div class="cell" id="cell-3"></div>
-  <div class="row" id="row-2"></div>
-    <div class="cell" id="cell-4"></div>
-    <div class="cell" id="cell-5"></div>
-    <div class="cell" id="cell-6"></div>
-  <div class="row" id="row-3"></div>
-    <div class="cell" id="cell-7"></div>
-    <div class="cell" id="cell-8"></div>
-    <div class="cell" id="cell-9"></div>
+    <div id="container">
+      <div id="message">Messages will go here</div>
+      <div class="gameboard">
+        <div class="cell" id="cell-0"></div>
+        <div class="cell" id="cell-1"></div>
+        <div class="cell" id="cell-2"></div>
+        <div class="cell" id="cell-3"></div>
+        <div class="cell" id="cell-4"></div>
+        <div class="cell" id="cell-5"></div>
+        <div class="cell" id="cell-6"></div>
+        <div class="cell" id="cell-7"></div>
+        <div class="cell" id="cell-8"></div>
+      </div>
+    </div>
+  </div>
 
   <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
   <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
@@ -192,14 +217,3 @@
     });
 
 </script>
-
-
-
-
-
-<div id="grid"></div>
-
-<ul id="messages"></ul>
-    <form action="" id="chatForm">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
