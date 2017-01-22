@@ -30,17 +30,17 @@
 
   <div id="container"></div>
   <div class="row" id="row-1"></div>
-    <div class="cell" id="cell-0"></div>
     <div class="cell" id="cell-1"></div>
     <div class="cell" id="cell-2"></div>
-  <div class="row" id="row-2"></div>
     <div class="cell" id="cell-3"></div>
+  <div class="row" id="row-2"></div>
     <div class="cell" id="cell-4"></div>
     <div class="cell" id="cell-5"></div>
-  <div class="row" id="row-3"></div>
     <div class="cell" id="cell-6"></div>
+  <div class="row" id="row-3"></div>
     <div class="cell" id="cell-7"></div>
     <div class="cell" id="cell-8"></div>
+    <div class="cell" id="cell-9"></div>
 
   <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
   <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
@@ -124,67 +124,67 @@
     }
 
     function getBox(id){
-      return event.currentTarget;
+      return document.getElementById(`cell-${id}`).innerHTML;
     }
 
 
-    document.getElementById('cell-0').addEventListener('click', (event) => {
+    document.getElementById('cell-1').addEventListener('click', (event) => {
       console.log({cell: 0});
       event.currentTarget.innerHTML = document.turn;
       socket.emit('clicked', {cell: 0});
       nextMove(event.currentTarget);
     });
 
-    document.getElementById('cell-1').addEventListener('click', (event) => {
+    document.getElementById('cell-2').addEventListener('click', (event) => {
       console.log({cell: 1});
       event.currentTarget.innerHTML = document.turn;
       socket.emit('clicked', {cell: 1});
       nextMove(event.currentTarget);
     });
 
-    document.getElementById('cell-2').addEventListener('click', (event) => {
+    document.getElementById('cell-3').addEventListener('click', (event) => {
       console.log({cell: 2});
       event.currentTarget.innerHTML = document.turn;
       socket.emit('clicked', {cell: 2});
       nextMove(event.currentTarget);
     });
 
-    document.getElementById('cell-3').addEventListener('click', (event) => {
+    document.getElementById('cell-4').addEventListener('click', (event) => {
       console.log({cell: 3});
       event.currentTarget.innerHTML = document.turn;
        socket.emit('clicked', {cell: 3});
       nextMove(event.currentTarget);
     });
 
-    document.getElementById('cell-4').addEventListener('click', (event) => {
+    document.getElementById('cell-5').addEventListener('click', (event) => {
       console.log({cell: 4});
       event.currentTarget.innerHTML = document.turn;
       socket.emit('clicked', {cell: 4});
       nextMove(event.currentTarget);
     });
 
-    document.getElementById('cell-5').addEventListener('click', (event) => {
+    document.getElementById('cell-6').addEventListener('click', (event) => {
       console.log({cell: 5});
       event.currentTarget.innerHTML = document.turn;
       socket.emit('clicked', {cell: 5});
       nextMove(event.currentTarget);
     });
 
-    document.getElementById('cell-6').addEventListener('click', (event) => {
+    document.getElementById('cell-7').addEventListener('click', (event) => {
       console.log({cell: 6});
       event.currentTarget.innerHTML = document.turn;
       socket.emit('clicked', {cell: 6});
       nextMove(event.currentTarget);
     });
 
-    document.getElementById('cell-7').addEventListener('click', (event) => {
+    document.getElementById('cell-8').addEventListener('click', (event) => {
       console.log({cell: 7});
       event.currentTarget.innerHTML = document.turn;
       socket.emit('clicked', {cell: 7});
       nextMove(event.currentTarget);
     });
 
-    document.getElementById('cell-8').addEventListener('click', (event) => {
+    document.getElementById('cell-9').addEventListener('click', (event) => {
       console.log({cell: 8});
       event.currentTarget.innerHTML = document.turn;
       socket.emit('clicked', {cell: 8});
