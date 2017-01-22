@@ -1,5 +1,5 @@
 <h1>Play</h1>
-
+<head>
 <style>
 
     #container {
@@ -17,8 +17,9 @@
       height: 200px;
       float: left;
     }
-  </style>
+</style>
 </head>
+
 
 <body onload="startGame();">
 
@@ -55,7 +56,7 @@
 
     function startGame(){
       document.turn = "X";
-      setMessage(document.turn + ' gets to start');
+      setMessage(document.turn + " gets to start");
     }
 
     function setMessage(msg){
@@ -63,14 +64,14 @@
     }
 
     function nextMove(cell) {
-      if (cell.innerHTML === "") {
-      cell.innerHTML = document.turn;
-      switchTurn();
-      console.log(document.turn);
-      }
-      else {
-        setMessage("That square is already used");
-      }
+      // console.log (cell.innerHTML);
+      // if (cell.innerHTML === "") {
+        switchTurn();
+      //   console.log(document.turn);
+      // }
+      // else {
+      //   setMessage("That square is already used");
+      // }
     }
 
     function switchTurn() {
@@ -79,11 +80,11 @@
       }
       else if (document.turn === "X"){
         document.turn = "0"
-        setMessage("It's " + document.turn + "'s Turn")
+        setMessage("Its " + document.turn + "s Turn")
       }
       else {
         document.turn = "X";
-        setMessage("It's " + document.turn + "'s Turn")
+        setMessage("Its " + document.turn + "s Turn")
       }
     }
 
@@ -98,16 +99,15 @@
         checkRow(2, 5, 8, move ) ||
         checkRow(3, 6, 9, move ) ||
         checkRow(1, 5, 9, move ) ||
-        checkRow(3, 5, 7, move ) ||
-        ) {
-        result = true;
-        }
+        checkRow(3, 5, 7, move ) )
+      {
+      result = true;
+      }
       return result;
     }
 
     function checkRow(a, b, c, move) {
       var result = false;
-
       if (
         getBox(a) === move &&
         getBox(b) === move &&
@@ -118,20 +118,37 @@
     }
 
     function getBox(number){
-      return document.getElementById("cell-0" + number).innerHTML;
+      return document.getElementById("cell-0").innerHTML;
     }
-
 
     let storeState = [0,0,0,0,0,0,0,0,0];
 
     document.getElementById('cell-0').addEventListener('click', (event) => {
       console.log({cell: 0});
-      // nextMove(1);
-      // element.innerHTML = document.turn;
       storeState.splice(0, 0, 1);
+      event.currentTarget.innerHTML = document.turn;
       console.log(storeState);
       socket.emit('clicked', {cell: 0});
+      nextMove(event.currentTarget);
     });
+
+    // function cell0() {
+    //   console.log({cell: 0});
+    //   document.getElementById('cell-0').innerHTML = document.turn;
+    //   storeState.splice(0, 0, 1);
+    //   console.log(document.turn);
+    //   socket.emit('clicked', {cell: 0});
+    //   switchTurn();
+    // }
+
+    // function cell1() {
+    //   console.log({cell: 1});
+    //   document.getElementById('cell-1').innerHTML = document.turn;
+    //   storeState.splice(0, 0, 1);
+    //   switchTurn();
+    //   console.log(storeState);
+    //   socket.emit('clicked', {cell: 1});
+    // }
 
 
     document.getElementById('cell-1').addEventListener('click', (event) => {
@@ -139,16 +156,22 @@
       // nextMove(1);
       // innerHTML = "X";
       storeState.splice(0, 0, 1);
+      event.currentTarget.innerHTML = document.turn;
       console.log(storeState);
       socket.emit('clicked', {cell: 1});
+      nextMove(event.currentTarget);
     });
+
     document.getElementById('cell-2').addEventListener('click', (event) => {
       console.log({cell: 2});
       // nextMove(1);
       storeState.splice(0, 0, 1);
+      event.currentTarget.innerHTML = document.turn;
       console.log(storeState);
       socket.emit('clicked', {cell: 2});
+      nextMove(event.currentTarget);
     });
+
     document.getElementById('cell-3').addEventListener('click', (event) => {
       console.log({cell: 3});
       // nextMove(1);
@@ -177,11 +200,11 @@
       socket.emit('clicked', {cell: 8});
     });
 
-  </script>
+</script>
 
-<div id="grid"></div>
+{{!-- <div id="grid"></div>
 
 <ul id="messages"></ul>
     <form action="" id="chatForm">
       <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
+    </form> --}}
