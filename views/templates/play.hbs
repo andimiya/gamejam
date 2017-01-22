@@ -20,6 +20,9 @@
 </style>
 </head>
 
+<div id="page-container"></div>
+<div id="left-sidebar-container"></div>
+
 
 <body onload="startGame();">
 
@@ -118,7 +121,8 @@
     }
 
     function getBox(number){
-      return document.getElementById("cell-0").innerHTML;
+      console.log(event.currentTarget.innerHTML);
+      return event.currentTarget.innerHTML;
     }
 
     let storeState = [0,0,0,0,0,0,0,0,0];
@@ -132,29 +136,9 @@
       nextMove(event.currentTarget);
     });
 
-    // function cell0() {
-    //   console.log({cell: 0});
-    //   document.getElementById('cell-0').innerHTML = document.turn;
-    //   storeState.splice(0, 0, 1);
-    //   console.log(document.turn);
-    //   socket.emit('clicked', {cell: 0});
-    //   switchTurn();
-    // }
-
-    // function cell1() {
-    //   console.log({cell: 1});
-    //   document.getElementById('cell-1').innerHTML = document.turn;
-    //   storeState.splice(0, 0, 1);
-    //   switchTurn();
-    //   console.log(storeState);
-    //   socket.emit('clicked', {cell: 1});
-    // }
-
 
     document.getElementById('cell-1').addEventListener('click', (event) => {
       console.log({cell: 1});
-      // nextMove(1);
-      // innerHTML = "X";
       storeState.splice(0, 0, 1);
       event.currentTarget.innerHTML = document.turn;
       console.log(storeState);
