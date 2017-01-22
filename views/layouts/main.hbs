@@ -29,6 +29,26 @@
         event.preventDefault();
         socket.emit('chat', { message: $('#m').val()})
       });
+
+      function setGrid(n,m) {
+        var grid = document.getElementById('grid');
+        grid.setAttribute('style', `width: ${n*3}px; height: ${m*3}px;`);
+
+        for (var i = 0; i < n; i++) {
+          for (var x = 0; x < m; x++) {
+            var div = document.createElement('div');
+            div.classList.add('cells');
+            div.dataset.x = x;
+            div.dataset.y = i;
+            grid.appendChild(div);
+            div.style.backgroundColor = 'black';
+
+            // div.addEventListener('mouseover', gridMouseOver);
+          }
+        }
+      }
+
+      setGrid(3,3);
   </script>
 </body>
 </html>
