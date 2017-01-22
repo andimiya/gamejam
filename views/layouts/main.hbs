@@ -25,11 +25,20 @@
     var socket = io('http://localhost:3000');
       socket.on('chat', function (data) {
         $('#messages').append(data.message);
-      });
+      })
+        // Create socket handler to receive gamestate update from server
+        // update sampleMatrix
+        // call the setGrid Function
       $('#chatForm').on('submit', (event) => {
         event.preventDefault();
         socket.emit('chat', { message: $('#m').val()})
       });
+
+      let sampleMatrix = [
+        [0,1,0],
+        [0,1,0],
+        [0,1,0]
+      ]
 
       function setGrid(n,m) {
         var grid = document.getElementById('grid');

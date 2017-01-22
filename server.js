@@ -6,6 +6,16 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const home = require('./routes/home');
 
+const initialGameState = {
+  matrix: [
+    [0,0,0],
+    [0,0,0],
+    [0,0,0]
+  ]
+}
+
+let gameState = initialGameState
+
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.static('public'));
 
