@@ -1,9 +1,56 @@
-<h1>Welcome</h1>
+<style>
 
-<input type=button onClick="location.href='/get-code'" value='Create Game'>
+
+body {
+  background-color: #CA661A
+}
+
+#home-container {
+  position: relative;
+}
+
+#title {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+
+#start-button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 15%;
+  padding: 100px 0px 0px 0px;
+}
+
+#left-body {
+  display: block;
+  position: absolute;
+  left: -20px;
+  width: 40%;
+  top: 230px;
+}
+
+#right-body {
+  display: block;
+  position: absolute;
+  right: -20px;
+  width: 40%;
+  top: 230px;
+}
+
+</style>
+
+<div id="home-container">
+<img id="title" src="assets/title.png">
+<img id="left-body" src="assets/panda-body.png">
+<img id="right-body" src="assets/bunny-body.png">
+<img id="start-button" src="assets/start.png" onClick="location.href='/get-code'" value='Create Game'>
+
 </div>
 
-
+{{!--
 <form action="/lobby" method="post">
   Join Game:<br>
   <input type="text" name="code">
@@ -11,4 +58,4 @@
   <input type="submit" value="Join Game">
 </form>
 
-
+ --}}
