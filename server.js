@@ -6,8 +6,7 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const home = require('./routes/home');
 
-
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.static('public'));
 
 app.set('view engine', '.hbs');
@@ -21,9 +20,6 @@ app.use('/', home);
 
 
 io.on('connection', function (socket) {
-  socket.on('news', function (data) {
-    console.log('server', data);
-  });
    socket.on('chat', function (data) {
     socket.broadcast.emit('chat', data);
   });
