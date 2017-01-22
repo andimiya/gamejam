@@ -41,10 +41,11 @@
             div.classList.add('cells');
             div.dataset.x = x;
             div.dataset.y = i;
+            div.style.backgroundColor = '';
+            div.addEventListener('click', (event) =>{
+              socket.emit('clicked', {data: $('event').target.dataset});
+            })
             grid.appendChild(div);
-            div.style.backgroundColor = 'black';
-
-            // div.addEventListener('mouseover', gridMouseOver);
           }
         }
       }

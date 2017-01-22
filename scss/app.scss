@@ -2,5 +2,16 @@
 @import "partials/clearfix";
 
 h1 {
-  color: red;
+  color: blue;
 }
+
+#grid {
+  display: inline-block;
+}
+#grid .cells {
+    box-sizing: border-box;
+    height: 20px;
+    width: 20px;
+    border: 1px solid black;
+    float: center;
+  }

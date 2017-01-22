@@ -23,6 +23,10 @@ io.on('connection', function (socket) {
    socket.on('chat', function (data) {
     socket.broadcast.emit('chat', data);
   });
+   socket.on('clicked', function (data) {
+    socket.broadcast.emit('clicked', data);
+
+   });
 });
 
 
