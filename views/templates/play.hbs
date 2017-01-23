@@ -52,7 +52,7 @@
     </div>
 
     <div id="container">
-      <div id="message">Messages will go here</div>
+      <div id="servermessage">Messages will go here</div>
       <div class="gameboard">
         <div class="cell" id="cell-1"></div>
         <div class="cell" id="cell-2"></div>
@@ -75,13 +75,14 @@
     var socket = io('http://localhost:3000');
       socket.on('chat', function (data) {
         $('#messages').append(data.message);
-      })
+      });
         // Create socket handler to receive gamestate update from server
         // update sampleMatrix
         // call the setGrid Function
       $('#chatForm').on('submit', (event) => {
         event.preventDefault();
         socket.emit('chat', { message: $('#m').val()})
+        $('#m').val('');
       });
 
     function startGame(){
@@ -90,7 +91,7 @@
     }
 
     function setMessage(msg){
-      document.getElementById("message").innerHTML = msg;
+      document.getElementById("servermessage").innerHTML = msg;
     }
 
     function nextMove(cell) {
@@ -152,68 +153,80 @@
       return document.getElementById(`cell-${id}`).innerHTML;
     }
 
+    socket.on('news', function (data) {
+      console.log('data from server', data);
+      let id = data.cell;
+      let cellId = `cell-${id}`
+      console.log('cellId: ', cellId);
+      let cell = document.getElementById(cellId);
+      cell.innerHTML = document.turn;
+      document.turn = data.turn;
+    });
+
+
+
 
     document.getElementById('cell-1').addEventListener('click', (event) => {
-      console.log({cell: 0});
       event.currentTarget.innerHTML = document.turn;
-      socket.emit('clicked', {cell: 0});
       nextMove(event.currentTarget);
+      socket.emit('clicked', {cell: 1, turn: document.turn});
     });
+
 
     document.getElementById('cell-2').addEventListener('click', (event) => {
       console.log({cell: 1});
       event.currentTarget.innerHTML = document.turn;
-      socket.emit('clicked', {cell: 1});
       nextMove(event.currentTarget);
+      socket.emit('clicked', {cell: 2, turn: document.turn});
     });
 
     document.getElementById('cell-3').addEventListener('click', (event) => {
       console.log({cell: 2});
       event.currentTarget.innerHTML = document.turn;
-      socket.emit('clicked', {cell: 2});
       nextMove(event.currentTarget);
+      socket.emit('clicked', {cell: 3, turn: document.turn});
     });
 
     document.getElementById('cell-4').addEventListener('click', (event) => {
       console.log({cell: 3});
       event.currentTarget.innerHTML = document.turn;
-       socket.emit('clicked', {cell: 3});
       nextMove(event.currentTarget);
+      socket.emit('clicked', {cell: 4, turn: document.turn});
     });
 
     document.getElementById('cell-5').addEventListener('click', (event) => {
       console.log({cell: 4});
       event.currentTarget.innerHTML = document.turn;
-      socket.emit('clicked', {cell: 4});
       nextMove(event.currentTarget);
+      socket.emit('clicked', {cell: 5, turn: document.turn});
     });
 
     document.getElementById('cell-6').addEventListener('click', (event) => {
       console.log({cell: 5});
       event.currentTarget.innerHTML = document.turn;
-      socket.emit('clicked', {cell: 5});
       nextMove(event.currentTarget);
+      socket.emit('clicked', {cell: 6, turn: document.turn});
     });
 
     document.getElementById('cell-7').addEventListener('click', (event) => {
       console.log({cell: 6});
       event.currentTarget.innerHTML = document.turn;
-      socket.emit('clicked', {cell: 6});
       nextMove(event.currentTarget);
+      socket.emit('clicked', {cell: 7, turn: document.turn});
     });
 
     document.getElementById('cell-8').addEventListener('click', (event) => {
       console.log({cell: 7});
       event.currentTarget.innerHTML = document.turn;
-      socket.emit('clicked', {cell: 7});
       nextMove(event.currentTarget);
+      socket.emit('clicked', {cell: 8, turn: document.turn});
     });
 
     document.getElementById('cell-9').addEventListener('click', (event) => {
       console.log({cell: 8});
       event.currentTarget.innerHTML = document.turn;
-      socket.emit('clicked', {cell: 8});
       nextMove(event.currentTarget);
+      socket.emit('clicked', {cell: 9, turn: document.turn});
     });
 
 </script>
