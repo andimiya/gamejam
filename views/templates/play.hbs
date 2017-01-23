@@ -1,6 +1,31 @@
-<h1>Play</h1>
-<head>
+
 <style>
+
+  @-webkit-keyframes wiggle
+  {
+      0% {-webkit-transform: rotateZ(2deg);}
+      50% {-webkit-transform: rotateZ(-2deg);}
+      100% {-webkit-transform: rotateZ(2deg);}
+  }
+  @-moz-keyframes wiggle
+  {
+      0% {-moz-transform: rotateZ(2deg);}
+      50% {-moz-transform: rotateZ(-2deg);}
+      100% {-moz-transform: rotateZ(2deg);}
+  }
+  @-o-keyframes wiggle
+  {
+      0% {-o-transform: rotateZ(2deg);}
+      50% {-o-transform: rotateZ(-2deg);}
+      100% {-o-transform: rotateZ(2deg);}
+  }
+  @keyframes wiggle
+  {
+      0% {transform: rotateZ(2deg);}
+      50% {transform: rotateZ(-2deg);}
+      100% {transform: rotateZ(2deg);}
+  }
+
   body {
 
   }
@@ -15,6 +40,7 @@
     /*border: 10px solid red;*/
     background-color: #CC6600;
     background-image: url('/assets/big-bear.png');
+
     background-size: 225px;
     background-repeat: no-repeat;
     background-position: center;
@@ -27,7 +53,7 @@
   #grid {
     /*border: 10px solid black;*/
     align-self: flex-end;
-
+    padding: 0px 0px 200px 0px;
   }
 
   #container {
@@ -35,20 +61,38 @@
     background-color: #E67605;
     box-sizing: border-box;
     flex: 0 0 685px;
-
+  }
+  #servermessage {
+    font-family: 'Nunito', sans-serif;
+    font-size: 24px;
+    text-align: center;
+    padding: 20px 0px 0px 20px;
+    -webkit-animation: wiggle 0.7s ease infinite;
+    -moz-animation: wiggle 0.7s ease infinite;
+    -o-animation: wiggle 0.7s ease infinite;
+    animation: wiggle 0.7s ease infinite;
   }
   #message {
     font-family: 'Nunito', sans-serif;
     font-size: 24px;
     text-align: center;
     padding: 20px 0px 20px 0px;
+
   }
   .gameboard {
+    font-family: 'Nunito', sans-serif;
+    font-size: 80px;
+    text-align: center;
+
+
     background-image: url('/assets/grid.png');
     background-repeat: no-repeat;
     background-position: center;
-    /*border: 10px solid purple;*/
-    display: flex;
+    background-size: 80%;
+    vertical-align: middle;
+
+/*    border: 10px solid purple;
+*/    display: flex;
     flex-flow: row wrap;
     justify-content: center;
     text-align: center;
@@ -61,6 +105,7 @@
     flex: 0 0 33.3333%;
     height: 200px;
     align-self: flex-start;
+    line-height: 12rem;
 
   }
 
@@ -70,7 +115,7 @@
 <body onload="startGame();">
   <div id="page-container">
     <div id="left-sidebar-container">
-      {{!-- <img src="/assets/big-bear.png"></img> --}}
+      {{!-- <img height="200px" src="/assets/big-bear.png"></img> --}}
       <div id="grid">
       <ul id="messages"></ul>
       <form action="" id="chatForm">
@@ -115,7 +160,7 @@
 
     function startGame(){
       document.turn = "X";
-      setMessage(document.turn + " gets to start");
+      setMessage("Player " + document.turn + " Plays First");
     }
 
     function setMessage(msg){
