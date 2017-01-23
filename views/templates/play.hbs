@@ -2,9 +2,7 @@
 <head>
 <style>
   body {
-    font-family: 'Nunito', sans-serif;
-    font-size: 32px;
-    text-align: center;
+
   }
   #page-container {
     border: 10px solid blue;
@@ -16,18 +14,25 @@
   #left-sidebar-container {
     border: 10px solid red;
     background-color: #CC6600;
+    background-image: url('/assets/big-bear.png');
+    background-size: 225px;
+    background-repeat: no-repeat;
+    background-position: center;
     box-sizing: border-box;
-    flex: 0 0 25%;
+    flex: 0 0 275px;
   }
   #container {
     border: 10px solid pink;
     background-color: #E67605;
     box-sizing: border-box;
-    flex: 0 0 75%;
+    flex: 0 0 685px;
 
   }
   #message {
-
+    font-family: 'Nunito', sans-serif;
+    font-size: 24px;
+    text-align: center;
+    padding: 20px 0px 20px 0px;
   }
   .gameboard {
     background-image: url('/assets/grid.png');
@@ -37,12 +42,17 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    text-align: center;
+    align-items: center;
+
   }
   .cell {
     border: 10px solid brown;
     box-sizing: border-box;
     flex: 0 0 33.3333%;
     height: 200px;
+    align-self: flex-start;
+
   }
 
 </style>
@@ -51,6 +61,7 @@
 <body onload="startGame();">
   <div id="page-container">
     <div id="left-sidebar-container">
+      {{!-- <img src="/assets/big-bear.png"></img> --}}
       <div id="grid"></div>
       <ul id="messages"></ul>
       <form action="" id="chatForm">
@@ -162,10 +173,10 @@
 
     function showImage() {
       if (document.turn === "Player 1") {
-        return '<img height=100px src="/assets/small-player1.png"/>'
+        return '<img height=175px src="/assets/small-player1.png"/>'
       }
       else {
-        return '<img height=100px src="/assets/small-player2.png"/>'
+        return '<img height=175px src="/assets/small-player2.png"/>'
       }
     }
 
