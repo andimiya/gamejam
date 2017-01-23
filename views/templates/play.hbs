@@ -114,7 +114,7 @@
       });
 
     function startGame(){
-      document.turn = "Player 1";
+      document.turn = "X";
       setMessage(document.turn + " gets to start");
     }
 
@@ -133,12 +133,12 @@
         console.log('checkForWinner', checkForWinner(document.turn));
         setMessage("Congratulations " + document.turn + " You Win!");
       }
-      else if (document.turn === "Player 1"){
-        document.turn = "Player 2"
+      else if (document.turn === "X"){
+        document.turn = "O"
         setMessage("Its " + document.turn + "s Turn")
       }
       else {
-        document.turn = "Player 1";
+        document.turn = "X";
         setMessage("Its " + document.turn + "s Turn")
       }
     }
@@ -192,70 +192,70 @@
       document.turn = data.turn;
     });
 
-    function showImage() {
-      if (document.turn === "Player 1") {
-        return '<img height=175px src="/assets/small-player1.png"/>'
-      }
-      else {
-        return '<img height=175px src="/assets/small-player2.png"/>'
-      }
-    }
+    // function showImage() {
+    //   if (document.turn === "Player 1") {
+    //     return '<img height=175px src="/assets/small-player1.png"/>'
+    //   }
+    //   else {
+    //     return '<img height=175px src="/assets/small-player2.png"/>'
+    //   }
+    // }
 
 
 
 
     document.getElementById('cell-1').addEventListener('click', (event) => {
-      event.currentTarget.innerHTML = showImage();
+      event.currentTarget.innerHTML = document.turn;
       nextMove(event.currentTarget);
       socket.emit('clicked', {cell: 1, turn: document.turn});
     });
 
 
     document.getElementById('cell-2').addEventListener('click', (event) => {
-      event.currentTarget.innerHTML = showImage();
+      event.currentTarget.innerHTML = document.turn;
       nextMove(event.currentTarget);
       socket.emit('clicked', {cell: 2, turn: document.turn});
     });
 
     document.getElementById('cell-3').addEventListener('click', (event) => {
 
-      event.currentTarget.innerHTML = showImage();
+      event.currentTarget.innerHTML = document.turn;
       nextMove(event.currentTarget);
       socket.emit('clicked', {cell: 3, turn: document.turn});
     });
 
     document.getElementById('cell-4').addEventListener('click', (event) => {
-      event.currentTarget.innerHTML = showImage();
+      event.currentTarget.innerHTML = document.turn;
       nextMove(event.currentTarget);
       socket.emit('clicked', {cell: 4, turn: document.turn});
     });
 
     document.getElementById('cell-5').addEventListener('click', (event) => {
-      event.currentTarget.innerHTML = showImage();
+      event.currentTarget.innerHTML = document.turn;
       nextMove(event.currentTarget);
       socket.emit('clicked', {cell: 5, turn: document.turn});
     });
 
     document.getElementById('cell-6').addEventListener('click', (event) => {
-      event.currentTarget.innerHTML = showImage();
+      event.currentTarget.innerHTML = document.turn;
       nextMove(event.currentTarget);
       socket.emit('clicked', {cell: 6, turn: document.turn});
     });
 
     document.getElementById('cell-7').addEventListener('click', (event) => {
-      event.currentTarget.innerHTML = showImage();
+      event.currentTarget.innerHTML = document.turn;
       nextMove(event.currentTarget);
       socket.emit('clicked', {cell: 7, turn: document.turn});
     });
 
     document.getElementById('cell-8').addEventListener('click', (event) => {
-      event.currentTarget.innerHTML = showImage();
+      event.currentTarget.innerHTML = document.turn;
       nextMove(event.currentTarget);
       socket.emit('clicked', {cell: 8, turn: document.turn});
     });
 
     document.getElementById('cell-9').addEventListener('click', (event) => {
-      event.currentTarget.innerHTML = showImage();
+      event.currentTarget.innerHTML = document.turn;
       nextMove(event.currentTarget);
       socket.emit('clicked', {cell: 9, turn: document.turn});
     });
