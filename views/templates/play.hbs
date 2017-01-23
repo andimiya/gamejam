@@ -5,37 +5,63 @@
 
   }
   #page-container {
-    border: 10px solid blue;
+    /*border: 10px solid blue;*/
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    height: 500px;
+    height: 700px;
   }
   #left-sidebar-container {
-    border: 10px solid red;
+    /*border: 10px solid red;*/
+    background-color: #CC6600;
+    background-image: url('/assets/big-bear.png');
+    background-size: 225px;
+    background-repeat: no-repeat;
+    background-position: center;
     box-sizing: border-box;
-    flex: 0 0 25%;
+    flex: 0 0 275px;
+    display: flex;
+    justify-content: center;
   }
+
+  #grid {
+    /*border: 10px solid black;*/
+    align-self: flex-end;
+
+  }
+
   #container {
-    border: 10px solid pink;
+    /*border: 10px solid pink;*/
+    background-color: #E67605;
     box-sizing: border-box;
-    flex: 0 0 75%;
+    flex: 0 0 685px;
 
   }
   #message {
-
+    font-family: 'Nunito', sans-serif;
+    font-size: 24px;
+    text-align: center;
+    padding: 20px 0px 20px 0px;
   }
   .gameboard {
-    border: 10px solid purple;
+    background-image: url('/assets/grid.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    /*border: 10px solid purple;*/
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    text-align: center;
+    align-items: center;
+
   }
   .cell {
-    border: 10px solid brown;
+    /*border: 10px solid brown;*/
     box-sizing: border-box;
     flex: 0 0 33.3333%;
-    height: 100px;
+    height: 200px;
+    align-self: flex-start;
+
   }
 
 </style>
@@ -44,11 +70,13 @@
 <body onload="startGame();">
   <div id="page-container">
     <div id="left-sidebar-container">
-      <div id="grid"></div>
+      {{!-- <img src="/assets/big-bear.png"></img> --}}
+      <div id="grid">
       <ul id="messages"></ul>
       <form action="" id="chatForm">
         <input id="m" autocomplete="off" /><button>Send</button>
       </form>
+      </div>
     </div>
 
     <div id="container">
@@ -86,7 +114,7 @@
       });
 
     function startGame(){
-      document.turn = "X";
+      document.turn = "Player 1";
       setMessage(document.turn + " gets to start");
     }
 
@@ -105,12 +133,12 @@
         console.log('checkForWinner', checkForWinner(document.turn));
         setMessage("Congratulations " + document.turn + " You Win!");
       }
-      else if (document.turn === "X"){
-        document.turn = "0"
+      else if (document.turn === "Player 1"){
+        document.turn = "Player 2"
         setMessage("Its " + document.turn + "s Turn")
       }
       else {
-        document.turn = "X";
+        document.turn = "Player 1";
         setMessage("Its " + document.turn + "s Turn")
       }
     }
@@ -135,10 +163,10 @@
     }
 
     function checkRow(a, b, c, move) {
-      console.log('a: ', a);
-      console.log('b: ', b);
-      console.log('c: ', c);
-      console.log('move: ', move);
+      // console.log('a: ', a);
+      // console.log('b: ', b);
+      // console.log('c: ', c);
+      // console.log('move: ', move);
       var result = false;
       if (
         getBox(a) === move &&
@@ -150,6 +178,7 @@
     }
 
     function getBox(id){
+      console.log(id, 'id');
       return document.getElementById(`cell-${id}`).innerHTML;
     }
 
@@ -163,68 +192,70 @@
       document.turn = data.turn;
     });
 
+    function showImage() {
+      if (document.turn === "Player 1") {
+        return '<img height=175px src="/assets/small-player1.png"/>'
+      }
+      else {
+        return '<img height=175px src="/assets/small-player2.png"/>'
+      }
+    }
+
 
 
 
     document.getElementById('cell-1').addEventListener('click', (event) => {
-      event.currentTarget.innerHTML = document.turn;
+      event.currentTarget.innerHTML = showImage();
       nextMove(event.currentTarget);
       socket.emit('clicked', {cell: 1, turn: document.turn});
     });
 
 
     document.getElementById('cell-2').addEventListener('click', (event) => {
-      console.log({cell: 1});
-      event.currentTarget.innerHTML = document.turn;
+      event.currentTarget.innerHTML = showImage();
       nextMove(event.currentTarget);
       socket.emit('clicked', {cell: 2, turn: document.turn});
     });
 
     document.getElementById('cell-3').addEventListener('click', (event) => {
-      console.log({cell: 2});
-      event.currentTarget.innerHTML = document.turn;
+
+      event.currentTarget.innerHTML = showImage();
       nextMove(event.currentTarget);
       socket.emit('clicked', {cell: 3, turn: document.turn});
     });
 
     document.getElementById('cell-4').addEventListener('click', (event) => {
-      console.log({cell: 3});
-      event.currentTarget.innerHTML = document.turn;
+      event.currentTarget.innerHTML = showImage();
       nextMove(event.currentTarget);
       socket.emit('clicked', {cell: 4, turn: document.turn});
     });
 
     document.getElementById('cell-5').addEventListener('click', (event) => {
-      console.log({cell: 4});
-      event.currentTarget.innerHTML = document.turn;
+      event.currentTarget.innerHTML = showImage();
       nextMove(event.currentTarget);
       socket.emit('clicked', {cell: 5, turn: document.turn});
     });
 
     document.getElementById('cell-6').addEventListener('click', (event) => {
-      console.log({cell: 5});
-      event.currentTarget.innerHTML = document.turn;
+      event.currentTarget.innerHTML = showImage();
       nextMove(event.currentTarget);
       socket.emit('clicked', {cell: 6, turn: document.turn});
     });
 
     document.getElementById('cell-7').addEventListener('click', (event) => {
-      console.log({cell: 6});
-      event.currentTarget.innerHTML = document.turn;
+      event.currentTarget.innerHTML = showImage();
       nextMove(event.currentTarget);
       socket.emit('clicked', {cell: 7, turn: document.turn});
     });
 
     document.getElementById('cell-8').addEventListener('click', (event) => {
-      console.log({cell: 7});
-      event.currentTarget.innerHTML = document.turn;
+      event.currentTarget.innerHTML = showImage();
       nextMove(event.currentTarget);
       socket.emit('clicked', {cell: 8, turn: document.turn});
     });
 
     document.getElementById('cell-9').addEventListener('click', (event) => {
-      console.log({cell: 8});
-      event.currentTarget.innerHTML = document.turn;
+      event.currentTarget.innerHTML = showImage();
       nextMove(event.currentTarget);
       socket.emit('clicked', {cell: 9, turn: document.turn});
     });
